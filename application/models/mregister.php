@@ -35,10 +35,9 @@ class mregister extends CI_Model
            $query = $this->db->query("Select * From usuario where ident = ?",$identif);
             return $query->result();
         }
-        function agregarusuario($ident,$tipeuser,$email,$password){
+        function agregarusuario($ident,$email,$password){
             $datos=array(
                         'ident'=> $ident,
-                        'tipeuser' => $tipeuser,
                         'email' => $email,
                         'password' => md5($password)
                 );
@@ -55,11 +54,10 @@ class mregister extends CI_Model
                 return $mensaje;
         }
 
-        function actualizarusuario($ident,$tipeuser,$email,$password){
+        function actualizarusuario($ident,$email,$password){
 
             $datos=[
                 'ident'=> $ident,
-                'tipeuser' => $tipeuser,
                 'email' => $email,
                 'password' => $password
                 ];

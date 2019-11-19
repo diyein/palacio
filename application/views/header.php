@@ -5,7 +5,7 @@
         }
     </style>
     <header>
-        <nav id="navp" class="navbar navbar-expand-lg ">
+    <nav id="navp" class="navbar navbar-expand-lg ">
             <!--navbar-expand-lg navbar-blue bg-light-->
             <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/cwelcome">Palacios Restaurant</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,21 +37,40 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
 
+                    <?php if ($this->session->userdata('txtident')) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Bienvenido <?php echo $nombre = $this->session->userdata('txtident'); ?></a>
+
+                    </li>
+                    <?php endif ?>
+
+                    <?php if ($this->session->userdata('txtident') || $this->session->userdata('tipeuser') === 'admin') : ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('usuarios') ?>">Panel</a>
+                    </li>
+
+
+
 
                     <li class="nav-item">
                         <!-- si hay sesion muestra salir, si no hay muestra conectar -->
-                        <?php if ($this->session->userdata('txtident')) : ?>
+                        
                             <a class="nav-link" href="<?= site_url('clogin/logout') ?>">Salir</a>
-                        <?php else : ?>
-                         <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('login') ?>">Conectarse</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('register') ?>">Registrarse</a>
-                        </li>
-                        <?php endif ?>
-
                     </li>
+
+
+
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('login') ?>">Conectarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('register') ?>">Registrarse</a>
+                    </li>
+                <?php endif ?>
+
+
 
                 </ul>
             </div>
